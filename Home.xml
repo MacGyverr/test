@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<controls>
+
+		<include>DefaultBackground</include>
+
+	
+		<control type="label">
+			<posx>500</posx>
+			<posy>300</posy>
+			<width>500</width>
+			<height>32</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<font>font14</font>
+			<textcolor>white</textcolor>
+			<label>Press left to go to widget menu</label>
+			<visible>true</visible>
+		</control>	
+		
+		<!-- Main Menu -->
+		<control type="list" id="9000">
+			<posx>0</posx>
+			<posy>50</posy>
+			<width>220</width>
+			<height>416</height>
+			<onup>9000</onup>
+			<ondown>9000</ondown>
+			<onleft>8000</onleft>
+			<onright>8000</onright>
+			<viewtype>list</viewtype>
+			<orientation>vertical</orientation>
+			<itemlayout width="200" height="32">
+				<control type="label">
+					<posx>12</posx>
+					<posy>0</posy>
+					<width>200</width>
+					<height>32</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>font14</font>
+					<textcolor>white</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="220" height="32">
+				<!-- Focus Bar -->
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>200</width>
+					<height>32</height>
+					<aligny>center</aligny>
+					<texture>lists/focus.png</texture>
+					<colordiffuse>blue</colordiffuse>
+					<visible>true</visible>
+				</control>
+				<control type="label">
+					<posx>12</posx>
+					<posy>0</posy>
+					<width>200</width>
+					<height>32</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>font14</font>
+					<textcolor>white</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>true</visible>
+				</control>
+			</focusedlayout>
+			<content>
+				<item id="1">
+					<property name="id">$NUMBER[1]</property>
+					<label>$LOCALIZE[342]</label>
+					<property name="labelID">movies</property>
+					<property name="defaultID">movies</property>
+					<property name="widget">RecentMovies</property>
+					<property name="widgetName">20386</property>
+					<property name="widgetType">movies</property>
+					<property name="widgetPath">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(home).Property(widgetreload-movies)]</property>
+					<property name="widgetTarget">videos</property>
+					<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+					<property name="path">ActivateWindow(Videos,MovieTitles,return)</property>
+					<property name="submenuVisibility">movies</property>
+				</item>
+				<item id="2">
+					<property name="id">$NUMBER[2]</property>
+					<label>$LOCALIZE[20343]</label>
+					<property name="labelID">tvshows</property>
+					<property name="defaultID">tvshows</property>
+					<property name="widget">RecentEpisodes</property>
+					<property name="widgetName">20387</property>
+					<property name="widgetType">episodes</property>
+					<property name="widgetPath">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=episodes&amp;reload=$INFO[Window(home).Property(widgetreload-episodes)]</property>
+					<property name="widgetTarget">videos</property>
+					<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
+					<property name="path">ActivateWindow(Videos,TVShowTitles,return)</property>
+					<property name="submenuVisibility">tvshows</property>
+				</item>
+				<item id="3">
+					<property name="id">$NUMBER[3]</property>
+					<label>$LOCALIZE[3]</label>
+					<property name="labelID">3</property>
+					<property name="defaultID">videos</property>
+					<property name="background">home\videos\</property>
+					<property name="backgroundName">10006</property>
+					<onclick>ActivateWindow(Videos)</onclick>
+					<property name="path">ActivateWindow(Videos)</property>
+					<property name="submenuVisibility">num-3</property>
+				</item>
+				<item id="4">
+					<property name="id">$NUMBER[4]</property>
+					<label>$LOCALIZE[10004]</label>
+					<property name="labelID">settings</property>
+					<property name="defaultID">settings</property>
+					<onclick>ActivateWindow(Settings)</onclick>
+					<property name="path">ActivateWindow(Settings)</property>
+					<property name="submenuVisibility">settings</property>
+				</item>
+			</content>
+		</control>		
+		
+		
+
+			<control type="image">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(submenuVisibility),movies)</visible>
+				<posx>265</posx>
+				<posy>560</posy>
+				<width>250</width>
+				<height>140</height>
+				<aspectratio align="right" aligny="center">keep</aspectratio>
+				<texture>$VAR[GlobalWidgetIcon]</texture>
+			</control>
+			<control id="8000" type="list">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(submenuVisibility),movies)</visible>
+				<posx>522</posx>
+				<posy>563</posy>
+				<width>910</width>
+				<height>135</height>
+				<onup>8000</onup>
+				<ondown>8000</ondown>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<viewtype>list</viewtype>
+				<orientation>vertical</orientation>
+				<itemlayout width="910" height="27">
+					<control type="label">
+						<posx>10</posx>
+						<posy>-2</posy>
+						<width>500</width>
+						<height>27</height>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>font14</font>
+						<textcolor>white</textcolor>
+						<label>$VAR[GlobalWidgetLabel]</label>
+						<visible>true</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout width="910" height="27">
+					<!-- Focus Bar -->
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>510</width>
+						<height>27</height>
+						<aligny>center</aligny>
+						<texture>lists/focus.png</texture>
+						<colordiffuse>blue</colordiffuse>
+						<visible>true</visible>
+					</control>
+					<control type="label">
+						<posx>10</posx>
+						<posy>-2</posy>
+						<width>500</width>
+						<height>27</height>
+						<align>left</align>
+						<aligny>center</aligny>
+						<scrollout>false</scrollout>
+						<pauseatend>600</pauseatend>
+						<scrollspeed>20</scrollspeed>
+						<font>font14</font>
+						<textcolor>white</textcolor>
+						<label>$VAR[GlobalWidgetLabel]</label>
+						<visible>true</visible>
+					</control>
+				</focusedlayout>
+				<content target="videos">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(home).Property(widgetreload-movies)]</content>
+			</control>
+
+
+	
+
+
+
+
+
+
+
+		
+		
+	</controls>
+</window>
